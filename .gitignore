@@ -58,8 +58,7 @@ Thumbs.db
 # =========================
 # Package manager lock files (choose one)
 # =========================
-package-lock.json   # remove if using yarn/pnpm
-yarn.lock           # remove if using npm/pnpm
+
 
 
 # =========================
