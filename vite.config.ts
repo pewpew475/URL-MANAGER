@@ -7,7 +7,7 @@ import { viteSourceLocator } from "@metagptx/vite-plugin-source-locator";
 export default defineConfig(({ mode }) => ({
   plugins: [
     viteSourceLocator({
-      prefix: "mgx",
+      prefix: "Pratyush",
     }),
     react(),
   ],
