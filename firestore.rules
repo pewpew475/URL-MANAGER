@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // URLs collection rules
+    match /urls/{document} {
+      // Allow read access to authenticated admin users
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      
+      // Allow write access to authenticated admin users
+      allow write: if request.auth != null && request.auth.token.admin == true;
+      
+      // Allow create access for public URL shortening (without auth)
+      allow create: if true;
+      
+      // Allow update for visit count increments (without auth for redirects)
+      allow update: if resource.data.keys().hasAll(['visitCount']) &&
+                       request.resource.data.diff(resource.data).affectedKeys()
+                       .hasOnly(['visitCount', 'lastVisited']);
+    }
+    
+    // Analytics collection rules
+    match /analytics/{document} {
+      // Allow read access to authenticated admin users only
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      
+      // Allow write access to authenticated admin users only
+      allow write: if request.auth != null && request.auth.token.admin == true;
+      
+      // Allow create access for analytics logging (without auth)
+      allow create: if true;
+    }
+  }
+}
