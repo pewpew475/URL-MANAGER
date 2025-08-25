@@ -60,7 +60,7 @@ Thumbs.db
 # =========================
 package-lock.json   # remove if using yarn/pnpm
 yarn.lock           # remove if using npm/pnpm
-pnpm-lock.yaml      # remove if using npm/yarn
+
 
 # =========================
 # Misc
